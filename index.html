@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free APIs by Likn</title>
+</head>
+<body>
+
+  <div id="api-list">
+    <!-- A lista de APIs será adicionada aqui dinamicamente -->
+  </div>
+
+  <script>
+    // URL da API do GitHub para obter o conteúdo do arquivo no branch 'main'
+    const apiUrl = 'https://api.github.com/repos/likn-org/free-apis/contents/api-list.json?ref=main';
+
+    // Função para obter e exibir a lista de APIs
+    async function fetchApiList() {
+      try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Decode do conteúdo do arquivo
+        const content = atob(data.content);
+
+        // Parse do conteúdo para um objeto JavaScript
+        const apiList = JSON.parse(content);
+
+        // Construir a lista HTML
+        const apiListHTML = apiList.map(category => `
+          <h2>${category.name}</h2>
+          <ul>
+            ${category.apis.map(api => `<li>${api.name} - ${api.description}</li>`).join('')}
+          </ul>
+        `).join('');
+
+        // Adicionar a lista ao elemento com id 'api-list'
+        document.getElementById('api-list').innerHTML = apiListHTML;
+
+      } catch (error) {
+        console.error('Erro ao buscar a lista de APIs:', error);
+      }
+    }
+
+    // Chamar a função para buscar a lista ao carregar a página
+    fetchApiList();
+  </script>
+
+</body>
+</html>
