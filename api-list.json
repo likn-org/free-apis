@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Categoria 1",
+    "apis": [
+      {
+        "name": "API 1",
+        "description": "Descrição da API 1",
+        "url": "https://api-1.com",
+        "authentication": "yes",
+        "https": "yes",
+        "cors": "yes"
+      },
+      {
+        "name": "API 2",
+        "description": "Descrição da API 2",
+        "url": "https://api-2.com",
+        "authentication": "no",
+        "https": "yes",
+        "cors": "no"
+      }
+    ]
+  },
+  {
+    "name": "Categoria 2",
+    "apis": [
+      {
+        "name": "API 3",
+        "description": "Descrição da API 3",
+        "url": "https://api-3.com",
+        "authentication": "yes",
+        "https": "yes",
+        "cors": "yes"
+      },
+      {
+        "name": "API 4",
+        "description": "Descrição da API 4",
+        "url": "https://api-4.com",
+        "authentication": "no",
+        "https": "no",
+        "cors": "no"
+      }
+    ]
+  }
+]
