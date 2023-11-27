@@ -12,38 +12,42 @@
   </div>
 
   <script>
-    // URL da API do GitHub para obter o conteúdo do arquivo no branch 'main'
-    const apiUrl = 'https://api.github.com/repos/likn-org/free-apis/contents/api-list.json?ref=main';
+    const apiUrl = 'api-list.json'; // Agora o arquivo está diretamente no diretório do site
 
-    // Função para obter e exibir a lista de APIs
     async function fetchApiList() {
       try {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        // Decode do conteúdo do arquivo
-        const content = atob(data.content);
-
-        // Parse do conteúdo para um objeto JavaScript
-        const apiList = JSON.parse(content);
-
-        // Construir a lista HTML
-        const apiListHTML = apiList.map(category => `
-          <h2>${category.name}</h2>
-          <ul>
-            ${category.apis.map(api => `<li>${api.name} - ${api.description}</li>`).join('')}
-          </ul>
-        `).join('');
-
-        // Adicionar a lista ao elemento com id 'api-list'
-        document.getElementById('api-list').innerHTML = apiListHTML;
+        // O resto do seu código permanece o mesmo
+        displayApiList(data);
 
       } catch (error) {
         console.error('Erro ao buscar a lista de APIs:', error);
       }
     }
 
-    // Chamar a função para buscar a lista ao carregar a página
+    function displayApiList(apiList) {
+      // Construir a lista HTML
+      const apiListHTML = apiList.map(category => `
+        <h2>${category.name}</h2>
+        <ul>
+          ${category.apis.map(api => `
+            <li>
+              <strong>${api.name}</strong> - ${api.description}<br>
+              URL: <a href="${api.url}" target="_blank">${api.url}</a><br>
+              Autenticação: <span style="color: ${api.authentication === 'yes' ? 'blue' : 'green'};">${api.authentication}</span><br>
+              HTTPS: <span style="color: ${api.https === 'yes' ? 'green' : 'red'};">${api.https}</span><br>
+              CORS: <span style="color: ${api.cors === 'yes' ? 'green' : 'red'};">${api.cors}</span>
+            </li>
+          `).join('')}
+        </ul>
+      `).join('');
+
+      // Adicionar a lista ao elemento com id 'api-list'
+      document.getElementById('api-list').innerHTML = apiListHTML;
+    }
+
     fetchApiList();
   </script>
 
