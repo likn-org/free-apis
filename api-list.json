@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Categoria 1",
+    "apis": [
+      {"name": "API 1", "description": "Descrição da API 1"},
+      {"name": "API 2", "description": "Descrição da API 2"}
+    ]
+  },
+  {
+    "name": "Categoria 2",
+    "apis": [
+      {"name": "API 3", "description": "Descrição da API 3"},
+      {"name": "API 4", "description": "Descrição da API 4"}
+    ]
+  }
+]
